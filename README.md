@@ -17,7 +17,7 @@ The answer is this module.
 
 > note that this module is a **node-based** balancer and does not resolve paths. Hence, any wildcard is not allowed.
 
-To further clarify this, in the following topology, of all `string.ms` nodes share the same functions including `/string/up` and `math.ms` tries to send 3 messages to `/string/up`, each `string.ms` will receive one message.
+To further clarify this, in the following topology, if all `string.ms` nodes share the same functions including `/string/up` and `math.ms` tries to send 3 messages to `/string/up`, each `string.ms` will receive one message.
 
 ![](https://github.com/node-xyz/xyz.send.round.robin/blob/master/media/2.png?raw=true)
 

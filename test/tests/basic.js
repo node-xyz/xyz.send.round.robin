@@ -16,22 +16,22 @@ before(function (done) {
   }, 'xyztestrc.json')
 })
 
-it('udp and http route secure', function (done) {
+it('sender message rate', function (done) {
   _send('network', processes[identifiers[0]], (data) => {
-    console.log(data)
-    expect(data.snd).to.above(2)
-    expect(data.rcv).to.above(2)
+    // 100 should it be
+    expect(data.snd).to.be.above(75)
     done()
   })
 })
 
-it('tester will mess whith them', function (done) {
-  TESTER.call({
-    servicePath: '/math/float/neg',
-    payload: 'whatever'
-  }, (err, body) => {
-    expect(err).to.not.equal(null)
-    done()
+it('receiver message rate', function (done) {
+  _send('network', processes[identifiers[1]], (data) => {
+    // 33 should it be
+    expect(data.rcv).to.be.above(20)
+    _send('network', processes[identifiers[2]], (data) => {
+      expect(data.rcv).to.be.above(20)
+      done()
+    })
   })
 })
 

@@ -19,6 +19,45 @@ The answer is this module.
 
 To further clarify this, in the following topology, of all `string.ms` nodes share the same functions including `/string/up` and `math.ms` tries to send 3 messages to `/string/up`, each `string.ms` will receive one message.
 
+![](https://github.com/node-xyz/xyz.send.round.robin/blob/master/media/2.png?raw=true)
+
 This can be further justified in `xyz-cli`. If you run the test cases using `$ xyz dev -c ./xyztestrc.json`, the example explained above will be launched. As you see, the outgoing traffic of `math.ms`, **~90 msg/sec**, is distributed fairly among three nodes, each receiving **~30 msg/sec**.
 
-~[example]()
+![example](https://github.com/node-xyz/xyz.send.round.robin/blob/master/media/1.png?raw=true)
+
+
+# Usage
+
+The module can be installed using:
+
+```bash
+$ np install xyz.send.round.robin
+```
+
+It can be used both as the defaultSendStrategy:
+
+```
+const RR = require('xyz.send.round.robin')
+var ms = new XYZ({
+  selfConf: {
+    logLevel: 'verbose',
+    name: 'math.ms',
+    host: '127.0.0.1',
+    defaultSendStrategy: RR
+  },
+  systemConf: {nodes: []}
+})
+
+```
+
+or per call
+
+```
+ms.call({
+  servicePath: 'string/up',
+  payload: 'yo',
+  sendStrategy: RR,
+  payload: 'hello'}, (err, body, response) => {
+    //
+})
+```

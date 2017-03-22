@@ -1,0 +1,30 @@
+{
+  "name": "xyz.send.round.robin",
+  "version": "0.3.0",
+  "description": "Round Robin Send Strategy for xyz Edit",
+  "main": "xyz.send.round.robin",
+  "scripts": {
+    "test": "mocha --reporter spec",
+    "test-travis": "rm -Rf node_modules && npm install && ./node_modules/.bin/mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/node-xyz/xyz.send.round.robin.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3",
+    "xyz-cli": "^0.3.1",
+    "xyz-core": "^0.3.4"
+  },
+  "keywords": [
+    "node-xyz"
+  ],
+  "author": "kian.peymani@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/node-xyz/xyz.send.round.robin/issues"
+  },
+  "homepage": "https://github.com/node-xyz/xyz.send.round.robin#readme"
+}

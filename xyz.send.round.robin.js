@@ -47,9 +47,8 @@ let _roundRobinSendStrategy = function (params, next, done, xyz) {
       node: map[servicePath].node,
       route: route,
       redirect: redirect,
-      payload: {
-        userPayload: userPayload,
-        service: servicePath}
+      payload: userPayload,
+      service: servicePath
     }, responseCallback)
     done()
     return

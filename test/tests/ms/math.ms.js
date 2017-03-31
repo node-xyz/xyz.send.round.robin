@@ -14,7 +14,6 @@ var mathMs = new XYZ({
 setInterval(() => {
   mathMs.call({
     servicePath: 'string/up',
-    payload: 'yo',
     sendStrategy: RR,
     payload: 'hello'}, (err, body, response) => {
 

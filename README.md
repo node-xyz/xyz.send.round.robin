@@ -36,7 +36,7 @@ $ np install xyz.send.round.robin
 
 It can be used both as the defaultSendStrategy:
 
-```
+```javascript
 const RR = require('xyz.send.round.robin')
 var ms = new XYZ({
   selfConf: {
@@ -52,7 +52,7 @@ var ms = new XYZ({
 
 or per call
 
-```
+```javascript
 ms.call({
   servicePath: 'string/up',
   payload: 'yo',

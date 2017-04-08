@@ -12,12 +12,14 @@ before(function (done) {
     processes = p
     identifiers = Object.keys(processes)
     TESTER = test.getTester()
-    setTimeout(done, 10 * 1000)
+    setTimeout(done, 14 * 1000)
+    console.log(identifiers)
   }, 'xyztestrc.json')
 })
 
 it('sender message rate', function (done) {
   _send('network', processes[identifiers[0]], (data) => {
+    console.log(data)
     // 100 should it be
     expect(data.snd).to.be.above(75)
     done()
@@ -27,8 +29,10 @@ it('sender message rate', function (done) {
 it('receiver message rate', function (done) {
   _send('network', processes[identifiers[1]], (data) => {
     // 33 should it be
+    console.log(data)
     expect(data.rcv).to.be.above(20)
     _send('network', processes[identifiers[2]], (data) => {
+      console.log(data)
       expect(data.rcv).to.be.above(20)
       done()
     })

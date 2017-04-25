@@ -2,14 +2,13 @@ let http = require('http')
 let map = {}
 
 let _roundRobinSendStrategy = function (params, next, done, xyz) {
-  let msgConfig = params[0]
-
+  let msgConfig = params.opt
   let userPayload = msgConfig.payload
   let servicePath = msgConfig.servicePath
   let route = msgConfig.route
   let redirect = msgConfig.redirect
 
-  let responseCallback = params[1]
+  let responseCallback = params.responseCallback
 
   let foreignNodes = xyz.serviceRepository.foreignNodes
   let _transport = xyz.serviceRepository.transport
@@ -40,26 +39,13 @@ let _roundRobinSendStrategy = function (params, next, done, xyz) {
   }
 
   if (map[servicePath].node) {
+
     let lastIndex = map[servicePath].nodes.indexOf(map[servicePath].node)
     map[servicePath].node = map[servicePath].nodes[lastIndex === map[servicePath].nodes.length - 1 ? 0 : lastIndex + 1]
-    logger.verbose(`ROUND ROBIN :: determined node for service ${servicePath} : ${map[servicePath].node}`)
-    _transport.send({
-      node: map[servicePath].node,
-      route: route,
-      redirect: redirect,
-      payload: userPayload,
-      service: servicePath
-    }, responseCallback)
-    done()
-    return
-  }
 
-  // if no node matched
-  logger.warn(`Sending a message to ${servicePath} from ROUND ROBIN strategy failed (Local Response)`)
-  if (responseCallback) {
-    responseCallback(http.STATUS_CODES[404], null, null)
-    done()
-    return
+    logger.verbose(`ROUND ROBIN :: determined node for service ${servicePath} : ${map[servicePath].node}`)
+    params.targets.push({node: map[servicePath].node, service: servicePath})
+
   }
 }
 

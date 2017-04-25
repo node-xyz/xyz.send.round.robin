@@ -12,7 +12,7 @@ before(function (done) {
     processes = p
     identifiers = Object.keys(processes)
     TESTER = test.getTester()
-    setTimeout(done, 14 * 1000)
+    setTimeout(done, 12 * 1000)
     console.log(identifiers)
   }, 'xyztestrc.json')
 })

@@ -2,7 +2,7 @@
 Round Robin Send Strategy for xyz Edit
 
 [![Build Status](https://travis-ci.org/node-xyz/xyz.send.round.robin.svg?branch=master)](https://travis-ci.org/node-xyz/xyz.send.round.robin) [![npm version](https://badge.fury.io/js/xyz.send.round.robin.svg)](https://badge.fury.io/js/xyz.send.round.robin)
-
+[![dependencies Status](https://david-dm.org/node-xyz/xyz.send.round.robin/status.svg)](https://david-dm.org/node-xyz/xyz.send.round.robin)
 ---
 
 This repository demonstrates how a send strategy can be used to implement an **internal load balancing**. Keep in mind that client messages will usually go through an **external load balancer**, then a **front** microservice that translates a possible client requests into an internal message. This is another story for another day. At this point we want to handle this simple issue:
